@@ -1,0 +1,101 @@
+=================================================================
+SISTEMA INTEGRAL DE GESTIÓN - SOFTWARE FJ
+Simulación de clientes, servicios, reservas y excepciones
+=================================================================
+
+1. Registrar cliente válido C001
+Resultado: Cliente C001: Laura Gómez | Correo: laura@gmail.com | Teléfono: 3001234567
+Fin de la operación.
+
+2. Registrar cliente válido C002
+Resultado: Cliente C002: Carlos Pérez | Correo: carlos@gmail.com | Teléfono: 3107654321
+Fin de la operación.
+
+3. Intentar registrar cliente con correo inválido
+Resultado: error controlado -> El correo electrónico no tiene un formato válido.
+Fin de la operación.
+
+4. Intentar registrar nuevamente el cliente C001
+Resultado: error controlado -> Ya existe el cliente C001.
+Fin de la operación.
+
+5. Registrar servicio de reserva de sala S001
+Resultado: S001 - Sala Ejecutiva | $50000.00 | Disponible
+Fin de la operación.
+
+6. Registrar servicio de alquiler de equipo S002
+Resultado: S002 - Alquiler de proyector | $35000.00 | Disponible
+Fin de la operación.
+
+7. Registrar servicio de asesoría especializada S003
+Resultado: S003 - Asesoría tecnológica | $80000.00 | Disponible
+Fin de la operación.
+
+8. Intentar crear un servicio con tarifa negativa
+Resultado: error controlado -> La tarifa base debe ser un número mayor que cero.
+Fin de la operación.
+
+9. Crear reserva R001 para el cliente C001 y la sala S001
+Resultado: Reserva R001 | Cliente: Laura Gómez | Servicio: Sala Ejecutiva | Duración: 2 | Estado: PENDIENTE | Total: Pendiente de cálculo
+Fin de la operación.
+
+10. Confirmar la reserva R001
+Resultado: Costo total: $119000.00
+Fin de la operación.
+
+11. Crear reserva R002 para el mismo servicio S001
+Resultado: Reserva R002 | Cliente: Carlos Pérez | Servicio: Sala Ejecutiva | Duración: 1 | Estado: PENDIENTE | Total: Pendiente de cálculo
+Fin de la operación.
+
+12. Intentar confirmar R002 mientras S001 no está disponible
+Resultado: error controlado -> El servicio S001 no está disponible.
+Fin de la operación.
+
+13. Crear reserva R003 de asesoría con descuento del 10%
+Resultado: Reserva R003 | Cliente: Carlos Pérez | Servicio: Asesoría tecnológica | Duración: 2 | Estado: PENDIENTE | Total: Pendiente de cálculo
+Fin de la operación.
+
+14. Confirmar la reserva R003
+Resultado: Costo total: $171360.00
+Fin de la operación.
+
+15. Cancelar la reserva R003
+Resultado: Reserva R003 cancelada correctamente.
+Fin de la operación.
+
+16. Intentar confirmar una reserva inexistente
+Resultado: error controlado -> No existe la reserva R999.
+Fin de la operación.
+
+=================================================================
+RESUMEN FINAL
+=================================================================
+
+CLIENTES:
+- Cliente C001: Laura Gómez | Correo: laura@gmail.com | Teléfono: 3001234567
+- Cliente C002: Carlos Pérez | Correo: carlos@gmail.com | Teléfono: 3107654321
+
+SERVICIOS:
+- S001 - Sala Ejecutiva | $50000.00 | No disponible
+- S002 - Alquiler de proyector | $35000.00 | Disponible
+- S003 - Asesoría tecnológica | $80000.00 | Disponible
+
+RESERVAS:
+- Reserva R001 | Cliente: Laura Gómez | Servicio: Sala Ejecutiva | Duración: 2 | Estado: CONFIRMADA | Total: $119000.00
+- Reserva R002 | Cliente: Carlos Pérez | Servicio: Sala Ejecutiva | Duración: 1 | Estado: PENDIENTE | Total: Pendiente de cálculo
+- Reserva R003 | Cliente: Carlos Pérez | Servicio: Asesoría tecnológica | Duración: 2 | Estado: CANCELADA | Total: $171360.00
+
+Los eventos y errores se registraron en: logs/software_fj.log
+La simulación terminó sin detenerse por los errores controlados.
+
+--- ERRORES DE CONSOLA ---
+Spreadsheet runtime warmup failed during python startup
+Traceback (most recent call last):
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/patches/warm_spreadsheet_runtime_on_startup.py", line 26, in warm_spreadsheet_runtime_on_startup
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 785, in warm_spreadsheet_runtime
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 718, in _warm_feature_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/spreadsheet_warmup.py", line 509, in _warm_drawing_and_image_flows
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/generated/interface/models.py", line 32861, in bring_to_front
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/remote.py", line 764, in __call__
+  File "/tmp/tmp.QlpUkOUI9D/artifact_tool_v2-2.8.66/artifact_tool/rpc/client.py", line 175, in call
+artifact_tool.rpc.client.RemoteError: Element ordering requires an owning element collection.

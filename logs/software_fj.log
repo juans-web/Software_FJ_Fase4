@@ -1,0 +1,334 @@
+2026-11-16 22:11:49 | INFO | Cliente registrado: C001
+2026-11-16 22:11:49 | INFO | Cliente registrado: C002
+2026-11-16 22:11:49 | ERROR | Intentar registrar cliente con correo inválido: El correo electrónico no tiene un formato válido.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 58, in <lambda>
+    Cliente("C003", "Ana Ruiz", "ana-correo-invalido", "3001112233")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ/modelos.py", line 40, in __init__
+    raise DatosInvalidosError("El correo electrónico no tiene un formato válido.")
+excepciones.DatosInvalidosError: El correo electrónico no tiene un formato válido.
+2026-11-16 22:11:49 | ERROR | Error al registrar un cliente.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 65, in registrar_cliente
+    raise ClienteDuplicadoError(
+        f"Ya existe el cliente {cliente.identificador}."
+    )
+excepciones.ClienteDuplicadoError: Ya existe el cliente C001.
+2026-11-16 22:11:49 | ERROR | Intentar registrar nuevamente el cliente C001: Ya existe el cliente C001.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 65, in <lambda>
+    lambda: sistema.registrar_cliente(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        Cliente("C001", "Laura Gómez", "laura@gmail.com", "3001234567")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "/mnt/data/Software_FJ/sistema.py", line 65, in registrar_cliente
+    raise ClienteDuplicadoError(
+        f"Ya existe el cliente {cliente.identificador}."
+    )
+excepciones.ClienteDuplicadoError: Ya existe el cliente C001.
+2026-11-16 22:11:49 | INFO | Servicio registrado: S001
+2026-11-16 22:11:49 | INFO | Servicio registrado: S002
+2026-11-16 22:11:49 | INFO | Servicio registrado: S003
+2026-11-16 22:11:49 | ERROR | Intentar crear un servicio con tarifa negativa: La tarifa base debe ser un número mayor que cero.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 100, in <lambda>
+    ReservaSala("S004", "Sala inválida", -10000, 10)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ/modelos.py", line 163, in __init__
+    super().__init__(identificador, nombre, tarifa_hora, disponible)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ/modelos.py", line 90, in __init__
+    raise DatosInvalidosError("La tarifa base debe ser un número mayor que cero.")
+excepciones.DatosInvalidosError: La tarifa base debe ser un número mayor que cero.
+2026-11-16 22:11:49 | INFO | Reserva creada: R001
+2026-11-16 22:11:49 | INFO | Reserva confirmada: R001 | Total: $119000.00
+2026-11-16 22:11:49 | INFO | Finalizó el intento de confirmación de R001.
+2026-11-16 22:11:49 | INFO | Reserva creada: R002
+2026-11-16 22:11:49 | ERROR | Error al confirmar la reserva R002.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 137, in confirmar_reserva
+    total = reserva.confirmar()
+  File "/mnt/data/Software_FJ/modelos.py", line 297, in confirmar
+    raise ServicioNoDisponibleError(
+        f"El servicio {self.__servicio.identificador} no está disponible."
+    )
+excepciones.ServicioNoDisponibleError: El servicio S001 no está disponible.
+2026-11-16 22:11:49 | INFO | Finalizó el intento de confirmación de R002.
+2026-11-16 22:11:49 | ERROR | Intentar confirmar R002 mientras S001 no está disponible: El servicio S001 no está disponible.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 125, in <lambda>
+    lambda: sistema.confirmar_reserva("R002"),
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/mnt/data/Software_FJ/sistema.py", line 137, in confirmar_reserva
+    total = reserva.confirmar()
+  File "/mnt/data/Software_FJ/modelos.py", line 297, in confirmar
+    raise ServicioNoDisponibleError(
+        f"El servicio {self.__servicio.identificador} no está disponible."
+    )
+excepciones.ServicioNoDisponibleError: El servicio S001 no está disponible.
+2026-11-16 22:11:49 | INFO | Reserva creada: R003
+2026-11-16 22:11:49 | INFO | Reserva confirmada: R003 | Total: $171360.00
+2026-11-16 22:11:49 | INFO | Finalizó el intento de confirmación de R003.
+2026-11-16 22:11:49 | INFO | Reserva cancelada: R003
+2026-11-16 22:11:49 | INFO | Finalizó el intento de cancelación de R003.
+2026-11-16 22:11:49 | ERROR | Se intentó confirmar una reserva inexistente.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 129, in confirmar_reserva
+    reserva = self.__reservas[reserva_id]
+              ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'R999'
+2026-11-16 22:11:49 | ERROR | Intentar confirmar una reserva inexistente: No existe la reserva R999.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 129, in confirmar_reserva
+    reserva = self.__reservas[reserva_id]
+              ~~~~~~~~~~~~~~~^^^^^^^^^^^^
+KeyError: 'R999'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 151, in <lambda>
+    lambda: sistema.confirmar_reserva("R999"),
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/mnt/data/Software_FJ/sistema.py", line 132, in confirmar_reserva
+    raise ReservaInvalidaError(
+        f"No existe la reserva {reserva_id}."
+    ) from error
+excepciones.ReservaInvalidaError: No existe la reserva R999.
+2026-11-16 22:12:31 | INFO | Cliente registrado: C001
+2026-11-16 22:12:31 | INFO | Cliente registrado: C002
+2026-11-16 22:12:31 | ERROR | Intentar registrar cliente con correo inválido: El correo electrónico no tiene un formato válido.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 58, in <lambda>
+    Cliente("C003", "Ana Ruiz", "ana-correo-invalido", "3001112233")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ/modelos.py", line 40, in __init__
+    raise DatosInvalidosError("El correo electrónico no tiene un formato válido.")
+excepciones.DatosInvalidosError: El correo electrónico no tiene un formato válido.
+2026-11-16 22:12:31 | ERROR | Error al registrar un cliente.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 74, in registrar_cliente
+    raise ClienteDuplicadoError(
+        f"Ya existe el cliente {cliente.identificador}."
+    )
+excepciones.ClienteDuplicadoError: Ya existe el cliente C001.
+2026-11-16 22:12:31 | ERROR | Intentar registrar nuevamente el cliente C001: Ya existe el cliente C001.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 65, in <lambda>
+    lambda: sistema.registrar_cliente(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        Cliente("C001", "Laura Gómez", "laura@gmail.com", "3001234567")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "/mnt/data/Software_FJ/sistema.py", line 74, in registrar_cliente
+    raise ClienteDuplicadoError(
+        f"Ya existe el cliente {cliente.identificador}."
+    )
+excepciones.ClienteDuplicadoError: Ya existe el cliente C001.
+2026-11-16 22:12:31 | INFO | Servicio registrado: S001
+2026-11-16 22:12:31 | INFO | Servicio registrado: S002
+2026-11-16 22:12:31 | INFO | Servicio registrado: S003
+2026-11-16 22:12:31 | ERROR | Intentar crear un servicio con tarifa negativa: La tarifa base debe ser un número mayor que cero.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 100, in <lambda>
+    ReservaSala("S004", "Sala inválida", -10000, 10)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ/modelos.py", line 163, in __init__
+    super().__init__(identificador, nombre, tarifa_hora, disponible)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/mnt/data/Software_FJ/modelos.py", line 90, in __init__
+    raise DatosInvalidosError("La tarifa base debe ser un número mayor que cero.")
+excepciones.DatosInvalidosError: La tarifa base debe ser un número mayor que cero.
+2026-11-16 22:12:31 | INFO | Reserva creada: R001
+2026-11-16 22:12:31 | INFO | Reserva confirmada: R001 | Total: $119000.00
+2026-11-16 22:12:31 | INFO | Finalizó el intento de confirmación de R001.
+2026-11-16 22:12:31 | INFO | Reserva creada: R002
+2026-11-16 22:12:31 | ERROR | Error al confirmar la reserva R002.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 146, in confirmar_reserva
+    total = reserva.confirmar()
+  File "/mnt/data/Software_FJ/modelos.py", line 297, in confirmar
+    raise ServicioNoDisponibleError(
+        f"El servicio {self.__servicio.identificador} no está disponible."
+    )
+excepciones.ServicioNoDisponibleError: El servicio S001 no está disponible.
+2026-11-16 22:12:31 | INFO | Finalizó el intento de confirmación de R002.
+2026-11-16 22:12:31 | ERROR | Intentar confirmar R002 mientras S001 no está disponible: El servicio S001 no está disponible.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 125, in <lambda>
+    lambda: sistema.confirmar_reserva("R002"),
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/mnt/data/Software_FJ/sistema.py", line 146, in confirmar_reserva
+    total = reserva.confirmar()
+  File "/mnt/data/Software_FJ/modelos.py", line 297, in confirmar
+    raise ServicioNoDisponibleError(
+        f"El servicio {self.__servicio.identificador} no está disponible."
+    )
+excepciones.ServicioNoDisponibleError: El servicio S001 no está disponible.
+2026-11-16 22:12:31 | INFO | Reserva creada: R003
+2026-11-16 22:12:31 | INFO | Reserva confirmada: R003 | Total: $171360.00
+2026-11-16 22:12:31 | INFO | Finalizó el intento de confirmación de R003.
+2026-11-16 22:12:31 | INFO | Reserva cancelada: R003
+2026-11-16 22:12:31 | INFO | Finalizó el intento de cancelación de R003.
+2026-11-16 22:12:31 | ERROR | Se intentó confirmar una reserva inexistente.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 138, in confirmar_reserva
+    reserva = self.__buscar_por_id(self.__reservas, reserva_id)
+  File "/mnt/data/Software_FJ/sistema.py", line 57, in __buscar_por_id
+    raise KeyError(identificador)
+KeyError: 'R999'
+2026-11-16 22:12:31 | ERROR | Intentar confirmar una reserva inexistente: No existe la reserva R999.
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/sistema.py", line 138, in confirmar_reserva
+    reserva = self.__buscar_por_id(self.__reservas, reserva_id)
+  File "/mnt/data/Software_FJ/sistema.py", line 57, in __buscar_por_id
+    raise KeyError(identificador)
+KeyError: 'R999'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/data/Software_FJ/main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "/mnt/data/Software_FJ/main.py", line 151, in <lambda>
+    lambda: sistema.confirmar_reserva("R999"),
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/mnt/data/Software_FJ/sistema.py", line 141, in confirmar_reserva
+    raise ReservaInvalidaError(
+        f"No existe la reserva {reserva_id}."
+    ) from error
+excepciones.ReservaInvalidaError: No existe la reserva R999.
+2026-11-16 17:21:23 | INFO | Cliente registrado: C001
+2026-11-16 17:21:23 | INFO | Cliente registrado: C002
+2026-11-16 17:21:23 | ERROR | Intentar registrar cliente con correo inválido: El correo electrónico no tiene un formato válido.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 58, in <lambda>
+    Cliente("C003", "Ana Ruiz", "ana-correo-invalido", "3001112233")
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JUAN\Downloads\Software_FJ\modelos.py", line 40, in __init__
+    raise DatosInvalidosError("El correo electrónico no tiene un formato válido.")
+excepciones.DatosInvalidosError: El correo electrónico no tiene un formato válido.
+2026-11-16 17:21:23 | ERROR | Error al registrar un cliente.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 74, in registrar_cliente
+    raise ClienteDuplicadoError(
+        f"Ya existe el cliente {cliente.identificador}."
+    )
+excepciones.ClienteDuplicadoError: Ya existe el cliente C001.
+2026-11-16 17:21:23 | ERROR | Intentar registrar nuevamente el cliente C001: Ya existe el cliente C001.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 65, in <lambda>
+    lambda: sistema.registrar_cliente(
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^
+        Cliente("C001", "Laura Gómez", "laura@gmail.com", "3001234567")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ),
+    ^
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 74, in registrar_cliente
+    raise ClienteDuplicadoError(
+        f"Ya existe el cliente {cliente.identificador}."
+    )
+excepciones.ClienteDuplicadoError: Ya existe el cliente C001.
+2026-11-16 17:21:23 | INFO | Servicio registrado: S001
+2026-11-16 17:21:23 | INFO | Servicio registrado: S002
+2026-11-16 17:21:23 | INFO | Servicio registrado: S003
+2026-11-16 17:21:23 | ERROR | Intentar crear un servicio con tarifa negativa: La tarifa base debe ser un número mayor que cero.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 100, in <lambda>
+    ReservaSala("S004", "Sala inválida", -10000, 10)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JUAN\Downloads\Software_FJ\modelos.py", line 163, in __init__
+    super().__init__(identificador, nombre, tarifa_hora, disponible)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\JUAN\Downloads\Software_FJ\modelos.py", line 90, in __init__
+    raise DatosInvalidosError("La tarifa base debe ser un número mayor que cero.")
+excepciones.DatosInvalidosError: La tarifa base debe ser un número mayor que cero.
+2026-11-16 17:21:23 | INFO | Reserva creada: R001
+2026-11-16 17:21:23 | INFO | Reserva confirmada: R001 | Total: $119000.00
+2026-11-16 17:21:23 | INFO | Finalizó el intento de confirmación de R001.
+2026-11-16 17:21:23 | INFO | Reserva creada: R002
+2026-11-16 17:21:23 | ERROR | Error al confirmar la reserva R002.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 146, in confirmar_reserva
+    total = reserva.confirmar()
+  File "C:\Users\JUAN\Downloads\Software_FJ\modelos.py", line 297, in confirmar
+    raise ServicioNoDisponibleError(
+        f"El servicio {self.__servicio.identificador} no está disponible."
+    )
+excepciones.ServicioNoDisponibleError: El servicio S001 no está disponible.
+2026-11-16 17:21:23 | INFO | Finalizó el intento de confirmación de R002.
+2026-11-16 17:21:23 | ERROR | Intentar confirmar R002 mientras S001 no está disponible: El servicio S001 no está disponible.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 125, in <lambda>
+    lambda: sistema.confirmar_reserva("R002"),
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 146, in confirmar_reserva
+    total = reserva.confirmar()
+  File "C:\Users\JUAN\Downloads\Software_FJ\modelos.py", line 297, in confirmar
+    raise ServicioNoDisponibleError(
+        f"El servicio {self.__servicio.identificador} no está disponible."
+    )
+excepciones.ServicioNoDisponibleError: El servicio S001 no está disponible.
+2026-11-16 17:21:23 | INFO | Reserva creada: R003
+2026-11-16 17:21:23 | INFO | Reserva confirmada: R003 | Total: $171360.00
+2026-11-16 17:21:23 | INFO | Finalizó el intento de confirmación de R003.
+2026-11-16 17:21:23 | INFO | Reserva cancelada: R003
+2026-11-16 17:21:23 | INFO | Finalizó el intento de cancelación de R003.
+2026-11-16 17:21:23 | ERROR | Se intentó confirmar una reserva inexistente.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 138, in confirmar_reserva
+    reserva = self.__buscar_por_id(self.__reservas, reserva_id)
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 57, in __buscar_por_id
+    raise KeyError(identificador)
+KeyError: 'R999'
+2026-11-16 17:21:23 | ERROR | Intentar confirmar una reserva inexistente: No existe la reserva R999.
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 138, in confirmar_reserva
+    reserva = self.__buscar_por_id(self.__reservas, reserva_id)
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 57, in __buscar_por_id
+    raise KeyError(identificador)
+KeyError: 'R999'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 17, in ejecutar_operacion
+    resultado = operacion()
+  File "C:\Users\JUAN\Downloads\Software_FJ\main.py", line 151, in <lambda>
+    lambda: sistema.confirmar_reserva("R999"),
+            ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "C:\Users\JUAN\Downloads\Software_FJ\sistema.py", line 141, in confirmar_reserva
+    raise ReservaInvalidaError(
+        f"No existe la reserva {reserva_id}."
+    ) from error
+excepciones.ReservaInvalidaError: No existe la reserva R999.
